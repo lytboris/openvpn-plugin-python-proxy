@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 #" -W default
 import warnings; warnings.simplefilter('default')
 
@@ -17,7 +17,7 @@ Embeds the Python interpreter into Openvpn plugins"""
 classifiers = [
   "Topic :: System :: Systems Administration :: "]
 
-if not os.environ.has_key("Py_DEBUG"):
+if "Py_DEBUG" not in os.environ:
   Py_DEBUG = []
 else:
   Py_DEBUG = [('Py_DEBUG',1)]
@@ -30,7 +30,6 @@ ext_modules = [
       include_dirs = ["/usr/local/include","/usr/include/openvpn"],
       library_dirs=["/usr/local/lib","/usr/lib"],
       define_macros=[('LIBPYTHON_SO','"'+libpython_so+'"')] + Py_DEBUG,
-      libraries=["python%d.%d" % sys.version_info[:2]],
     ), ]
 
 setup(
